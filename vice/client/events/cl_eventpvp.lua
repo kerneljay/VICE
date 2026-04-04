@@ -1,0 +1,472 @@
+-- local eventdata = {
+--     eventactive = false,
+--     inEvent = false,
+--     musicString = "",
+--     playMusic = false,
+--     teams = {
+--         ["Red"] = {},
+--         ["Blue"] = {},
+--     }
+-- }
+
+-- function VICE.InEvent()
+--     return eventdata.inEvent
+-- end
+
+-- RegisterCommand('eventmenu', function()
+--     if VICE.getStaffLevel() >= 4 then
+--         RageUI.Visible(RMenu:Get("eventsmenu", "eventmenu"), not RageUI.Visible(RMenu:Get("eventsmenu", "eventmenu")))
+--     end
+-- end)
+
+-- RegisterCommand('joinevent', function()
+--     if eventdata.eventactive then
+--         if VICE.getPlayerCombatTimer() == 0 then
+--             if not tVICE.isInComa() then
+--                 if not VICE.InEvent() then
+--                     RageUI.Visible(RMenu:Get("eventsmenu", "waitingmenu"), true)
+--                     TriggerEvent("VICE:startEventSequence")
+--                     VICE.setEventMusic("MP_LEADERBOARD_SOUNDSET")
+--                 else
+--                     VICE.notify("~r~You are in a event.")
+--                 end
+--             else
+--                 VICE.notify("~r~You cannot join the event while in combat.")
+--             end
+--         else
+--             VICE.notify("~r~Unable to join.")
+--         end
+--     else
+--         VICE.notify("~r~There are no events currently running.")
+--     end
+-- end)
+
+-- RegisterNetEvent("VICE:EventStarting",function()
+--     eventdata.eventactive = true
+--     RageUI.Visible(RMenu:Get("eventsmenu", "waitingmenu"), false)
+-- end)
+
+-- RMenu.Add("eventsmenu", "mainmenu", RageUI.CreateMenu("", "VICE Events", VICE.getRageUIMenuWidth(), VICE.getRageUIMenuHeight(), "vice_events", "vice_events"))
+-- RMenu.Add("eventsmenu", "eventmenu", RageUI.CreateMenu("", "VICE Events", VICE.getRageUIMenuWidth(), VICE.getRageUIMenuHeight(), "vice_events", "vice_events"))
+-- RMenu.Add("eventsmenu", "waitingmenu", RageUI.CreateMenu("", "VICE Events", VICE.getRageUIMenuWidth(), VICE.getRageUIMenuHeight(), "vice_events", "vice_events"))
+-- RMenu.Add("eventsmenu", "adminoptions", RageUI.CreateSubMenu(RMenu:Get('eventsmenu', 'waitingmenu'), "", "Admin Options"))
+
+-- RageUI.CreateWhile(1.0, true, function()
+--     if RageUI.Visible(RMenu:Get('eventsmenu', 'waitingmenu')) then
+--         RageUI.DrawContent({ header = true, glare = false, instructionalButton = false }, function()
+--             RageUI.ButtonWithStyle("Leave Event",nil,{RightLabel = "→→→"},true,function(j, k, l)
+--                 if l then
+--                     TriggerServerEvent("VICE:LeaveEvent")
+--                     TriggerEvent("VICE:eventCleanup")
+--                 end
+--             end)
+--             RageUI.Checkbox("Toggle Event Music","",eventdata.playMusic,{Style = RageUI.CheckboxStyle.Car},function(j, l, k, s)
+--                     eventdata.playMusic = s
+--                     if l then
+--                         if eventdata.playMusic then
+--                             TriggerMusicEvent(eventdata.musicString)
+--                         else
+--                             TriggerMusicEvent("BST_STOP")
+--                         end
+--                     end
+--                 end)
+--               --  RageUI.Separator("~y~2v2 Event")
+--                 if not VICE.InEvent() then
+--                     for _, team in ipairs({"Red","Blue"}) do
+--                     -- RageUI.Separator((team == "Red" and "~r~Red Team" or "~b~Blue Team"))
+--                         -- for i = 1,2 do
+--                         --     RageUI.LeftSeparator((eventdata.teams[team][i] and VICE.getPlayerName(eventdata.teams[team][i]).." ["..eventdata.teams[team][i].."]" or "Empty Slot"))
+--                         -- end
+--                         if VICE.getUserId() ~= eventdata.teams[team][1] and VICE.getUserId() ~= eventdata.teams[team][2] then
+--                             if #eventdata.teams[team] < 2 then
+--                                 RageUI.Button((team == "Red" and "~r~Join Red Team" or "~b~Join Blue Team"),"",{},true,function(Hovered,Active,Selected)
+--                                     if Selected then
+--                                         TriggerServerEvent("VICE:Join2v2",team)
+--                                     end
+--                                 end)
+--                             end
+--                         elseif VICE.getUserId() == eventdata.teams[team][1] or VICE.getUserId() == eventdata.teams[team][2] then
+--                             RageUI.Button((team == "Red" and "~r~Leave Red Team" or "~b~Leave Blue Team"),"",{},true,function(Hovered,Active,Selected)
+--                                 if Selected then
+--                                     TriggerServerEvent("VICE:Leave2v2",team)
+--                                 end
+--                             end)
+--                         else
+--                             RageUI.Separator("~r~Teams are full, You may leave.")
+--                         end
+--                     end
+--                     if VICE.getStaffLevel() >= 4 then
+--                         RageUI.Separator("~y~Admin Options")
+--                         RageUI.Button("Start Event","",{},true,function(Hovered,Active,Selected)
+--                             if Selected then
+--                                 if (#eventdata.teams["Red"] == 2 and #eventdata.teams["Blue"] == 2) and (VICE.getUserId() == eventdata.teams["Red"][1] or VICE.getUserId() == eventdata.teams["Red"][2] or VICE.getUserId() == eventdata.teams["Blue"][1] or VICE.getUserId() == eventdata.teams["Blue"][2]) then
+--                                     TriggerServerEvent("VICE:Create2v2")
+--                                 else
+--                                     VICE.notify("~r~Not enough people to start the event.")
+--                                     TriggerServerEvent("VICE:EndEvent")
+--                                     TriggerServerEvent("VICE:LeaveEvent")
+--                                     TriggerEvent("VICE:eventCleanup")
+--                                     for _, team in ipairs({"Red","Blue"}) do
+--                                         for i = 1,2 do
+--                                             if eventdata.teams[team][i] then
+--                                                 TriggerServerEvent("VICE:LeaveEvent")
+--                                                 TriggerEvent("VICE:eventCleanup")
+--                                             end
+--                                         end
+--                                     end
+--                                 end
+--                                 TriggerEvent("VICE:eventCleanup")
+--                             end
+--                         end)
+--                         RageUI.Button("Cancel Event","",{},true,function(_,_,selected)
+--                             if selected then
+--                                 TriggerServerEvent("VICE:EndEvent")
+--                                 TriggerServerEvent("VICE:LeaveEvent")
+--                                 TriggerEvent("VICE:eventCleanup")
+--                                 for _, team in ipairs({"Red","Blue"}) do
+--                                     for i = 1,2 do
+--                                         if eventdata.teams[team][i] then
+--                                             TriggerServerEvent("VICE:LeaveEvent")
+--                                             TriggerEvent("VICE:eventCleanup")
+--                                         end
+--                                     end
+--                                 end
+--                                 RageUI.CloseAll()
+--                             end
+--                         end)
+--                     end
+--                 RageUI.Separator("~y~Players")
+--                 for _, team in ipairs({"Red","Blue"}) do
+--                     for i = 1,2 do
+--                         if eventdata.teams[team][i] then
+--                             if eventdata.teams[team][i] == 0 then
+--                                 eventdata.teams[team][i] = 1
+--                             end
+--                             RageUI.Button("[".. eventdata.teams[team][i] .. "]" .. VICE.getPlayerName(eventdata.teams[team][i]) .. (team == "Red" and " ~r~Red Team " or " ~b~Blue Team "), "Name: " .. VICE.getPlayerName(eventdata.teams[team][i]) .. " Temp ID: " .. GetPlayerFromServerId(PlayerPedId()) .." Perm ID: " .. eventdata.teams[team][i], {}, true, function(_,_,selected)
+--                                 if selected then
+--                                     -- 
+--                                 end
+--                             end)
+--                         end
+--                     end
+--                 end
+--             end
+--         end)
+--     end
+--     if RageUI.Visible(RMenu:Get('eventsmenu', 'eventmenu')) then
+--         RageUI.DrawContent({ header = true, glare = false, instructionalButton = false }, function()
+--             eventThingy = (eventdata.eventactive and "~g~There is an event currently running" or "~r~There are no events currently running")
+--             RageUI.Separator(eventThingy)
+--             if not eventdata.eventactive then
+--                 RageUI.Separator("~y~Admin Options")
+--                 RageUI.Button("2v2 - Start Event","This, well it'll start the event.",{},true,function(_,_,selected)
+--                     if selected then
+--                         TriggerServerEvent("VICE:StartEvent")
+--                     end
+--                 end)
+--             else
+--                 RageUI.Button("Cancel Event","",{},true,function(_,_,selected)
+--                     if selected then
+--                         TriggerServerEvent("VICE:EndEvent")
+--                     end
+--                 end)
+--             end
+--         end)
+--     end
+-- end)
+
+-- function VICE.showCountdownTimer(a9)
+--     showingscaleform = true
+--     local aa = -1
+--     local ab = -1
+--     local a9 = a9
+--     local ac = a9 + 1
+--     local ad = 255
+--     local ae = 0
+--     Citizen.CreateThread(
+--         function()
+--             while showingscaleform do
+--                 if not VICE.InEvent() then
+--                     return
+--                 end
+--                 if ac ~= -1 then
+--                     ac = ac - 1
+--                 end
+--                 if ac > 0 then
+--                     PlaySoundFrontend(-1, "3_2_1", "HUD_MINI_GAME_SOUNDSET", 1)
+--                 end
+--                 if ac == 0 then
+--                     PlaySoundFrontend(-1, "GO", "HUD_MINI_GAME_SOUNDSET", 1)
+--                     if (#eventdata.teams["Red"] == 2 and #eventdata.teams["Blue"] == 2) and (VICE.getUserId() == eventdata.teams["Red"][1] or VICE.getUserId() == eventdata.teams["Red"][2] or VICE.getUserId() == eventdata.teams["Blue"][1] or VICE.getUserId() == eventdata.teams["Blue"][2]) then
+--                         TriggerServerEvent("VICE:Create2v2")
+--                     else
+--                         VICE.notify("~r~Not enough people to start the event.")
+--                     end
+--                     TriggerEvent("VICE:eventCleanup")
+--                 end
+--                 Citizen.Wait(1000)
+--             end
+--         end
+--     )
+--     local af = Scaleform("COUNTDOWN")
+--     Citizen.CreateThread(
+--         function()
+--             while showingscaleform do
+--                 if not VICE.InEvent() then
+--                     return
+--                 end
+--                 if ac ~= -1 then
+--                     if ac == 0 then
+--                         af.RunFunction("SET_MESSAGE", {"CNTDWN_GO", 0, 255, 0, true, false})
+--                     elseif ac > 0 then
+--                         if ac >= a9 / 2 then
+--                             ae = math.floor(510 * (1 - aa / ab))
+--                         elseif ac < a9 / 2 then
+--                             ad = math.floor(510 * aa / ab)
+--                         end
+--                         af.RunFunction("SET_MESSAGE", {tostring(ac), ad, ae, 0, true, false})
+--                     end
+--                     af.Render2D()
+--                 end
+--                 Wait(0)
+--             end
+--         end
+--     )
+--     while ac ~= -1 do
+--         Citizen.Wait(1.0)
+--     end
+--     showingscaleform = false
+-- end
+
+-- function VICE.setEventMusic(a2)
+--     eventdata.playMusic = true
+--     eventdata.musicString = a2
+--     if eventdata.playMusic then
+--         TriggerMusicEvent(a2)
+--     end
+-- end
+-- local isDoingSequence = false
+
+-- local I = 0
+-- local J = 0
+-- local function K()
+--     if isDoingSequence then
+--         ExecuteCommand("hideui")
+--         local L = VICE.getPlayerPed()
+--         SetEntityVisible(L, false, false)
+--         SetFocusPosAndVel(vector3(-77.84175, -1104.633, 33.12158))
+--         I =CreateCameraWithParams("DEFAULT_SCRIPTED_CAMERA",-77.84175,-1104.633,33.12158,0.0,
+--             0.0,
+--             0.0,
+--             65.0,
+--             false,
+--             2
+--         )
+--         PointCamAtCoord(I, -45.73187, -1097.881, 26.41541)
+--         SetCamActive(I, true)
+--         RenderScriptCams(true, true, 0, true, false)
+--         J =
+--             CreateCameraWithParams(
+--             "DEFAULT_SCRIPTED_CAMERA",
+--             -45.2044,
+--             -1128.317,
+--             33.12158,
+--             0.0,
+--             0.0,
+--             0.0,
+--             65.0,
+--             false,
+--             2
+--         )
+--         PointCamAtCoord(J, -45.73187, -1097.881, 26.41541)
+--         SetCamActiveWithInterp(J, I, 10000, 5, 5)
+--         Wait(10000)
+--         if isDoingSequence then
+--             ClearFocus()
+--             SetCamCoord(I, vector3(177.9429, -901.3582, 46.75317))
+--             SetCamCoord(J, vector3(178.9451, -991.0022, 47.74731))
+--             SetFocusPosAndVel(vector3(177.9429, -901.3582, 46.75317))
+--             PointCamAtCoord(I, 195.1253, -933.7582, 30.67834)
+--             PointCamAtCoord(J, 195.1253, -933.7582, 30.67834)
+--             SetCamActiveWithInterp(J, I, 25000, 5, 5)
+--             Wait(25000)
+--         end
+--         if isDoingSequence then
+--             ClearFocus()
+--             SetCamCoord(I, vector3(-3135.257, 1042.998, 30.15601))
+--             SetCamCoord(J, vector3(-3123.837, 1133.525, 30.15601))
+--             SetFocusPosAndVel(vector3(-3147.073, 1088.374, 20.6864))
+--             PointCamAtCoord(I, -3147.073, 1088.374, 20.6864)
+--             PointCamAtCoord(J, -3147.073, 1088.374, 20.6864)
+--             SetCamActiveWithInterp(J, I, 15000, 5, 5)
+--             Wait(15000)
+--         end
+--         if isDoingSequence then
+--             ClearFocus()
+--             SetCamCoord(I, vector3(598.4967, 1122.923, 364.2878))
+--             SetCamCoord(J, vector3(819.7582, 1057.543, 364.2878))
+--             SetFocusPosAndVel(vector3(732.5406, 1195.807, 326.359))
+--             PointCamAtCoord(I, 732.5406, 1195.807, 326.359)
+--             PointCamAtCoord(J, 732.5406, 1195.807, 326.359)
+--             SetCamActiveWithInterp(J, I, 35000, 5, 5)
+--             Wait(35000)
+--         end
+--         if isDoingSequence then
+--             ClearFocus()
+--             SetCamCoord(I, vector3(1658.914, 2526.369, 69.68567))
+--             SetCamCoord(J, vector3(1751.934, 2507.947, 69.68567))
+--             SetFocusPosAndVel(vector3(1708.629, 2547.943, 45.55676))
+--             PointCamAtCoord(I, 1708.629, 2547.943, 45.55676)
+--             PointCamAtCoord(J, 1708.629, 2547.943, 45.55676)
+--             SetCamActiveWithInterp(J, I, 35000, 5, 5)
+--             Wait(35000)
+--         end
+--         if isDoingSequence then
+--             ClearFocus()
+--             SetCamCoord(I, vector3(1545.191, 6444.29, 35.64905))
+--             SetCamCoord(J, vector3(1608.475, 6413.301, 35.64905))
+--             SetFocusPosAndVel(vector3(1588.536, 6456.923, 29.27991))
+--             PointCamAtCoord(I, 1588.536, 6456.923, 29.27991)
+--             PointCamAtCoord(J, 1588.536, 6456.923, 29.27991)
+--             SetCamActiveWithInterp(J, I, 20000, 5, 5)
+--             Wait(20000)
+--         end
+--         if isDoingSequence then
+--             ClearFocus()
+--             SetCamCoord(I, vector3(-134.1758, -834.0527, 321.186))
+--             SetCamCoord(J, vector3(-37.60879, -882.6725, 321.186))
+--             SetFocusPosAndVel(vector3(-73.8989, -817.5824, 319.4843))
+--             PointCamAtCoord(I, -73.8989, -817.5824, 319.4843)
+--             PointCamAtCoord(J, -73.8989, -817.5824, 319.4843)
+--             SetCamActiveWithInterp(J, I, 25000, 5, 5)
+--             Wait(25000)
+--         end
+--         K()
+--     end
+-- end
+-- function VICE.stopEventSequence(M)
+--     RageUI.CloseAll()
+--     ExecuteCommand("showui")
+--     isDoingSequence = false
+--     DestroyCam(I, false)
+--     DestroyCam(J, false)
+--     if M == nil or M == true then
+--         RenderScriptCams(false, true, 0, true, false)
+--     else
+--         RenderScriptCams(false, false, 0, true, false)
+--     end
+--     ClearFocus()
+--     FreezeEntityPosition(VICE.getPlayerPed(), false)
+--     local L = VICE.getPlayerPed()
+--     SetEntityVisible(L, true, true)
+-- end
+-- RegisterNetEvent("VICE:startEventSequence",function()
+--     isDoingSequence = true
+--     K()
+-- end)
+
+-- RegisterNetEvent("VICE:eventCleanup",function(D, P, Q, R)
+--     VICE.stopEventSequence()
+--     RageUI.Visible(RMenu:Get("eventsmenu", "waitingmenu"), false)
+--     globalDisableVehicleFailure = false
+--     d = true
+--     Citizen.Wait(5000)
+--     d = false
+-- end)
+
+-- local N = "..."
+-- Citizen.CreateThread(function()
+--     while true do
+--         local userId = VICE.getUserId()
+--         if isDoingSequence then
+--             drawNativeText("~g~Waiting for event to start" .. N)
+--             drawNativeNotification("The command /leaveevent can be used at any time to return back to the main world.")
+--             if not RageUI.Visible(RMenu:Get("eventsmenu", "waitingmenu")) then
+--                 RageUI.Visible(RMenu:Get("eventsmenu", "waitingmenu"), true)
+--             end
+--             local totalPlayers = 0
+--             for _, team in pairs(eventdata.teams) do
+--                 totalPlayers = totalPlayers + #team
+--             end
+--             DrawGTATimerBar("~y~PLAYERS:", totalPlayers, 1)
+--             VICE.setWeather("EXTRASUNNY")
+--         end
+
+--         Wait(0)
+--     end
+-- end)
+
+-- RegisterNetEvent("VICE:announceEventJoinable",function(P, U)
+--     if VICE.getPlayerCombatTimer() == 0 and not VICE.getHideEventAnnouncementFlag() and not VICE.isInTutorial() then
+--         PlaySound(-1, "CHECKPOINT_PERFECT", "HUD_MINI_GAME_SOUNDSET", false, 0, true)
+--         tVICE.announceMpBigMsg("~b~" .. P .. " event has started!","/joinevent to enter, Win £10,000,000! - " .. tostring(U) .. " slots available.",15000)
+--     end
+-- end)
+
+-- local spectating = false
+-- local players = {}
+-- local current_player = 1
+
+-- RegisterNetEvent('VICE:StartSpectating')
+-- AddEventHandler('VICE:StartSpectating', function(_players)
+--     players = _players
+--     current_player = 1
+--     spectating = true
+--     SetFollowPedCamViewMode(3)
+--     NetworkSetInSpectatorMode(true, GetPlayerPed(players[current_player]))
+--     VICE.notify("~g~You've been teleported to specate the event. Use arrow keys to spectate other players.")
+-- end)
+
+-- Citizen.CreateThread(function()
+--     while true do
+--         Citizen.Wait(0)
+--         if spectating then
+--             if IsControlJustPressed(1, 174) then
+--                 current_player = current_player - 1
+--                 if current_player < 1 then current_player = #players end
+--                 NetworkSetInSpectatorMode(true, GetPlayerPed(players[current_player]))
+--                 VICE.notify("~g~Spectating: " .. VICE.getPlayerName(players[current_player]))
+--             elseif IsControlJustPressed(1, 175) then 
+--                 current_player = current_player + 1
+--                 if current_player > #players then current_player = 1 end
+--                 NetworkSetInSpectatorMode(true, GetPlayerPed(players[current_player]))
+--                 VICE.notify("~g~Spectating: " .. VICE.getPlayerName(players[current_player]))
+--             end
+--         end
+--     end
+-- end)
+
+-- local function selectLocation(location)
+--     currentLocation = location
+--     RageUI.Visible(RMenu:Get("eventsmenu", "mainmenu"), true)
+-- end
+
+-- local function deselectLocation()
+--     currentLocation = nil
+--     TriggerServerEvent("VICE:Request2v2")
+--     RageUI.Visible(RMenu:Get("eventsmenu", "mainmenu"), false)
+-- end
+
+-- local teleportLocations = {vector3(-351.8828125,-2650.8205566406,6.0003023147583),vector3(-354.71197509766, -2653.5031738281, 6.0002999305725)}
+
+-- Citizen.CreateThread(function()
+--     for _, location in pairs(teleportLocations) do
+--         tVICE.addMarker(location.x, location.y, location.z - 1, 1.0, 1.0, 1.0, 50, 255, 100, 170, 50, 27)
+--         VICE.createArea("eventsmenu_" .._,location, 2.0, 10.0, selectLocation, deselectLocation, nil, {location = location})
+--     end
+-- end)
+
+-- RegisterNetEvent("VICE:Update2v2Data",function(data)
+--     eventdata.teams = data
+-- end)
+
+-- RegisterNetEvent("VICE:EventInit",function(status)
+--     eventdata.eventactive = status
+-- end)
+
+-- RegisterNetEvent("VICE:Update2v2",function(status)
+--     eventdata.inEvent = status
+--     if status then
+--         PlaySoundFrontend(-1, "5s_To_Event_Start_Countdown", "GTAO_FM_Events_Soundset", 1)
+--     end
+-- end)

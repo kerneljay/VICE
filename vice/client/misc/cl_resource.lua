@@ -1,0 +1,15 @@
+-- AddEventHandler("onResourceStop", function(resourceName)
+--     if resourceName == GetCurrentResourceName() then
+--         VICE.notify("~r~[VICE] \nThe server has stopped")
+--     else
+--         VICE.notify("~r~[" .. resourceName .. "] \nThe resource has stopped")
+--     end
+-- end)
+
+-- AddEventHandler("onResourceStart", function(resourceName)
+--     if resourceName == GetCurrentResourceName() then
+--         VICE.notify("~r~[VICE] \nThe server has started")
+--     else
+--         VICE.notify("~r~[" .. resourceName .. "] \nThe resource has started")
+--     end
+-- end)

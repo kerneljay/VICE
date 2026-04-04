@@ -1,0 +1,132 @@
+-- local feedback = {}
+
+-- HasClaimedOG = function(user_id,week)
+--     local result = exports["vice"]:executeSync('SELECT '..week..' FROM vice_giveaways WHERE playerId = @playerId', {playerId = user_id})
+--     local hasclaimed = result and result[1] or nil
+--     return hasclaimed and hasclaimed[week] or false
+-- end
+
+-- AddEventHandler("VICE:onServerSpawn",function(user_id,source,first_spawn)
+--     if first_spawn then
+--         exports["vice"]:execute("INSERT INTO vice_giveaways (playerId, thisWeek, lastWeek, giveawayName, prize, otherDetails) VALUES (@playerId, FALSE, FALSE, '', '', '')", {playerId = user_id})
+--     end
+-- end)
+
+-- RegisterCommand('og', function(source)
+--     local source = source
+--     local user_id = VICE.getUserId(source)
+--     if VICE.hasPermission(user_id, 'og.giveaways') then
+--         TriggerClientEvent("VICE:adminCheckOG", source, true)
+--         TriggerClientEvent("VICE:openOGMenu", source)
+--     elseif VICE.hasPermission(user_id, 'og.menu') then
+--         TriggerClientEvent("VICE:openOGMenu", source)
+--     else
+--         VICE.notify(source, "~r~You are not an OG Member!")
+--         Wait(500)
+--         VICE.notify(source, "~r~If you want to apply head to announcements in vice!")
+--     end
+--     TriggerClientEvent("VICE:updateClaimStatus",source,{thisWeek = HasClaimedOG(user_id,"thisWeek"), lastWeek = HasClaimedOG(user_id,"lastWeek")})
+-- end)
+
+
+-- RegisterServerEvent('VICE:leaveFeedback')
+-- AddEventHandler('VICE:leaveFeedback', function()
+--     local source = source
+--     local user_id = VICE.getUserId(source)
+--     if VICE.hasPermission(user_id, "og.menu") then
+--         VICE.prompt(source,"Feedback:","",function(source, feedback)
+--             if string.len(feedback) > 5 then
+--                 TriggerClientEvent("VICE:ogMenuCooldown", source, false)
+--                 VICE.sendDCLog("og-feedback","VICE OG Feedback","> Player Name: **"..VICE.getPlayerName(user_id).."**\n> Player TempID: **"..source.."**\n> Player PermID: **"..user_id.."**\n> Feedback: **"..feedback.."**")
+--                 VICE.notify(source, "~g~Thank you for your feedback!")
+--             else
+--                 VICE.notify(source, "~r~Your feedback must be longer than 5 characters!")
+--             end
+--         end)
+--     else
+--         VICE.ACBan(15,user_id,"VICE:leaveFeedback")
+--     end
+-- end)
+
+-- -- Giveaways
+
+-- -- Need finished hint hint, wink wink, cough cough, nudge nudge, vice
+
+-- RegisterServerEvent('VICE:thisWeekGiveaway')
+-- AddEventHandler('VICE:thisWeekGiveaway', function()
+--     local source = source
+--     local user_id = VICE.getUserId(source)
+--     if HasClaimedOG(user_id,"thisWeek") then
+--         VICE.notify(source, '~r~You have already claimed this week\'s giveaway!')
+--     else
+--         VICE.notify(source, "You have claimed this week's giveaway!")
+--         exports["vice"]:executeSync('UPDATE vice_giveaways SET thisWeek = TRUE WHERE playerId = @playerId', {playerId = user_id})
+--         local result = exports["vice"]:executeSync('SELECT prize FROM vice_giveaways WHERE playerId = @playerId', {playerId = user_id})
+--         local prize = result and tonumber(result[1].prize) or nil
+--         if prize then
+--             VICE.giveBankMoney(user_id, prize)
+--         end
+--         TriggerClientEvent('VICE:updateClaimStatus', source, {thisWeek = true, lastWeek = HasClaimedOG(user_id,"lastWeek")})
+--     end
+-- end)
+
+-- RegisterServerEvent('VICE:lastWeekGiveaway')
+-- AddEventHandler('VICE:lastWeekGiveaway', function()
+--     local source = source
+--     local user_id = VICE.getUserId(source)
+--     if HasClaimedOG(user_id,"lastWeek") then
+--         VICE.notify(source, '~r~You have already claimed last week\'s giveaway!')
+--     else
+--         VICE.notify(source, "You have claimed last week's giveaway!")
+--         exports["vice"]:executeSync('UPDATE vice_giveaways SET lastWeek = TRUE WHERE playerId = @playerId', {playerId = user_id})
+--         TriggerClientEvent('VICE:updateClaimStatus', source, {thisWeek = HasClaimedOG(user_id,"thisWeek"), lastWeek = true})
+--     end
+-- end)
+
+-- RegisterServerEvent('VICE:createGiveaway')
+-- AddEventHandler('VICE:createGiveaway', function()
+--     local source = source
+--     local user_id = VICE.getUserId(source)
+--     if VICE.hasPermission(user_id,"og.giveaways") then
+--         VICE.prompt(source,"Giveaway Name:","",function(source, giveawayName)
+--             if giveawayName and giveawayName ~= "" then
+--                 VICE.prompt(source,"Prize:","",function(source, prize) 
+--                     if prize and prize ~= "" then
+--                         VICE.prompt(source,"Other Details:","",function(source, otherDetails) 
+--                             if otherDetails and otherDetails ~= "" then
+--                                 VICE.notify(source, "You have created a giveaway! " .. giveawayName .. " " .. prize .. " " .. otherDetails)
+--                                 exports["vice"]:execute("UPDATE vice_giveaways SET giveawayName = @giveawayName, prize = @prize, otherDetails = @otherDetails,thisWeek = FALSE, lastWeek = FALSE WHERE playerId = @playerId", {playerId = user_id, giveawayName = giveawayName, prize = prize, otherDetails = otherDetails})
+--                             else
+--                                 VICE.notify(source, "~r~You need to enter valid other details ")
+--                             end
+--                         end)
+--                     else
+--                         VICE.notify(source, "~r~You need to enter a valid prize amount ")
+--                     end
+--                 end)
+--             else
+--                 VICE.notify(source, "~r~You need to enter a valid giveaway name ")
+--             end
+--         end)
+--     end
+-- end)
+
+-- RegisterServerEvent('VICE:claimVehicleThisWeek')
+-- AddEventHandler('VICE:claimVehicleThisWeek', function()
+--     local source = source
+--     local user_id = VICE.getUserId(source)
+--     if HasClaimedOG(user_id,"thisWeek") then
+--         VICE.notify(source, '~r~You have already claimed this week\'s vehicle!')
+--     else
+--         local result = exports["vice"]:executeSync('SELECT prize FROM vice_giveaways AND thisWeek = FALSE')
+--         if result and result[1] and result[1].prize then
+--             local prize = result[1].prize
+--             VICE.notify(source, "~g~ Vehicle "..prize.." has been added to your garage!")
+--             AddVehicle(user_id, prize)
+--             exports["vice"]:executeSync('UPDATE vice_giveaways SET thisWeek = TRUE WHERE playerId = @playerId', {playerId = user_id})
+--             TriggerClientEvent('VICE:updateClaimStatus', source, {thisWeek = true, lastWeek = HasClaimedOG(user_id,"lastWeek")})
+--         else
+--             VICE.notify(source, "~r~No vehicle available to claim this week.")
+--         end
+--     end
+-- end)

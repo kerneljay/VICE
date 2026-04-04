@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+    <div id="disputeNotification" class="dispute-notif-container" style="display: none;">
+        <div id="disputeNotiTitle" class="dispute-notif-header">Dispute System</div>
+        <div class="dispute-notif-body">
+            <div id="disputeNotiDesc" class="dispute-notif-tile">U think u the shit bitch... U not even the fart</div>
+            <div class="dispute-notif-img-tile">
+                <img class="dispute-notif-img" src="assets/noti.png">
+            </div>
+        </div>
+    </div>
+    <div class="dispute-background hide" id="dispute-background">
+        <div class="dispute-container hide" id="dispute-container">
+            <div class="dispute-screen hide" id="dispute-screen">
+                <div class="dispute-header">
+                    <div class="dispute-header-line"></div>
+                    <div class="dispute-title-container">
+                        <h1 class="dispute-title">DISPUTE A PLAYER</h1>
+                        <h2 class="dispute-subtitle">Message a player about a recent encounter</h2>
+                    </div>
+                    <div class="dispute-header-report">
+                        <div class="dispute-header-image-container" style="background-image: url('assets/plrreport.png'); background-size: 285px; background-position: right -5px bottom -113px; background-repeat: no-repeat;">
+                        </div>
+                        <div class="dispute-header-report-text" id="dispute-report">
+                            <h3 class="dispute-report-title">Not able to resolve?</h3>
+                            <p class="dispute-report-subtitle">Open a player report</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="dispute-body">
+                    <div class="dispute-players">
+                        <div class="dispute-body-header">
+                            <div class="dispute-body-line"></div>
+                            <h3 class="dispute-body-title">Select Player</h3>
+                            <div id="dispute-players-search-container"class="dispute-players-search-container">
+                                <input id="dispute-players-search" class="dispute-players-search" type="text" placeholder="">  
+                                <img class="dispute-player-refresh-icon" src="assets/search.png" alt="Search" width="15" height="15">
+                                <img class="dispute-player-search-icon" src="assets/refresh.png" alt="Refresh" width="13" height="13">
+                            </div>
+                        </div>
+                        <div class="dispute-players-list" id="dispute-players-list">
+                            <div class="dispute-players-item">
+                                <div class="dispute-player-info">
+                                    <h4 id="dispute-player-name"class="dispute-player-name">BEAN</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dispute-message-warning">Only players who have recently <br/> damaged you will show in this list</div>
+                    </div>
+                    <div class="dispute-inbox">
+                        <div class="dispute-body-header">
+                            <div class="dispute-body-line"></div>
+                            <h3 class="dispute-body-title">INBOX</h3>
+                        </div>
+                        <div class="dispute-inbox-content">
+                            <div class="dispute-inbox-item">
+                                <div class="dispute-inbox-field">
+                                    <h3 class="dispute-inbox-title" id="inbox-title-id">ID</h3>
+                                    <p class="dispute-inbox-desc" id="inbox-desc-id">N/A</p>
+                                </div>
+                                <div class="dispute-inbox-field">
+                                    <h3 class="dispute-inbox-title" id="inbox-title-name">NAME</h3>
+                                    <p class="dispute-inbox-desc" id="inbox-desc-name">N/A</p>
+                                </div>
+                                <div class="dispute-inbox-field">
+                                    <h3 class="dispute-inbox-title" id="inbox-title-mute">MUTE</h3>
+                                    <button class="transparent-button" id="muteButton"><img src="assets/mute.png" alt="Mute" width="20" height="20"></button>
+                                </div>
+                                <div class="dispute-inbox-field">
+                                    <h3 class="dispute-inbox-title" id="inbox-title-block">BLOCK</h3>
+                                    <button class="transparent-button" id="blockButton"><img src="assets/block.png" alt="Block" width="20" height="20"></button>
+                                </div>
+                                <div class="dispute-inbox-field">
+                                    <h3 class="dispute-inbox-title" id="inbox-title-delete">DELETE</h3>
+                                    <button class="transparent-button" id="deleteButton"><img src="assets/del.png" alt="Delete" width="20" height="20"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dispute-messages">
+                        <div class="dispute-body-header">
+                        <div class="dispute-body-line"></div>
+                        <h3 class="dispute-body-title">MESSAGES</h3>
+                        <div class="dispute-messages-list">
+                        </div>
+                        <div class="dispute-message-input-container">
+                            <div class="dispute-message-input-wrapper">
+                                <input class="dispute-message-input" type="text">
+                                <button class="dispute-message-button">
+                                    <img class="dispute-message-icon" src="assets/send.png" alt="Send Icon">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</body>
+</html>

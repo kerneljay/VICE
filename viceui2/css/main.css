@@ -1,0 +1,517 @@
+@font-face {
+    font-family: "Akrobat-Bold";
+    src: url(../fonts/Akrobat-Bold.otf) format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Akrobat-Black";
+    src: url(../fonts/Akrobat-Black.otf) format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.dispute-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.dispute-container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-family: "Akrobat-Bold";
+    font-size: min(0.83vw, 1.5vh);
+    overflow: hidden;
+}
+
+.transparent-button {
+    background: transparent;
+    border: none;
+}
+
+.transparent-button:hover {
+  cursor: pointer;
+}
+
+.dispute-message-icon:hover {
+    cursor: pointer;
+  }
+
+body {
+    overflow: hidden;
+}
+
+.hide {
+    display: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.dispute-inbox-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dispute-inbox-field {
+    flex: 1;
+    text-align: center;
+}
+
+.dispute-container * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.dispute-screen {
+    width: 60vw;
+    height: 90vh;
+    display: grid;
+    align-self: center;
+    grid-template-rows: 2fr 12fr;
+    gap: 1em;
+}
+
+.dispute-header {
+    position: relative;
+    background-color: rgba(14, 20, 23, 0.64);
+    border-radius: 0.8em;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.dispute-header-line {
+    width: 0.4em;
+    height: 40%;
+    background-color: #01b4ef;
+    border-radius: 0 0.5em 0.5em 0;
+}
+
+.dispute-title-container {
+    margin-left: 1em;
+}
+
+.dispute-title {
+    font-size: 3em;
+    font-family: "Akrobat-Black";
+}
+
+.dispute-subtitle {
+    font-size: 1.45em;
+    position: relative;
+    color: #01b4ef;
+    top: -0.3em;
+}
+
+.dispute-header-report {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 25%;
+    height: 10vh;
+}
+
+.dispute-header-image-container {
+    position: relative;
+    display: flex;
+    justify-content: right;
+    width: 100%;
+    height: 100%;
+}
+
+.dispute-header-image {
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    bottom: 0;
+}
+
+.dispute-header-report-text {
+    position: absolute;
+    text-align: right;
+    width: 100%;
+    box-sizing: border-box;
+    bottom: 0;
+    padding: 0 0.5em 0.2em 0;
+}
+
+.dispute-header-report-text:hover {
+    cursor: pointer;
+}
+
+.dispute-report-title {
+    position: relative;
+    font-size: 1.2em;
+    color: #01b4ef;
+    bottom: -0.25em;
+}
+
+.dispute-report-subtitle {
+    font-size: 1.7em;
+}
+
+.dispute-body {
+    background-color: rgb(14, 20, 23, 0.64);
+    border-radius: 0.8em;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 3fr 4fr 5fr;
+    gap: 1em;
+    padding: 0.5em;
+}
+
+.dispute-body-header {
+    width: 100%;
+    height: 5%;
+    display: flex;
+    align-items: center;
+}
+
+.dispute-body-line {
+    width: 0.4em;
+    height: 60%;
+    background-color: #01b4ef;
+    border-radius: 0 0.2em 0.2em 0;
+}
+
+.dispute-body-title {
+    font-size: 1.3em;
+    margin-left: 0.5em;
+    white-space: nowrap;
+}
+
+.dispute-players {
+    position: relative;
+    background-color: rgba(14, 20, 23, 0.41);
+    border-radius: 0.8em;
+    height: 100%;
+    overflow: hidden;
+}
+
+.dispute-players-search-container {
+    flex-grow: 1;
+    margin: 0 0.5em 0 1.5em;
+    position: relative;
+}
+
+.dispute-players-search {
+    width: 100%;
+    background-color: rgba(135, 135, 135, 0.15);
+    border-radius: 0.8em;
+    height: 60%;
+    color: white;
+    font-family: "Akrobat-Bold";
+    box-sizing: border-box;
+    padding: 0 3em 0 1em;
+}
+
+.dispute-player-search-icon {
+    position: absolute;
+    max-width: 0.55em;
+    top: 0.3vh;
+    right: 1.5em;
+}
+
+.dispute-player-refresh-icon {
+    position: absolute;
+    max-width: 0.75em;
+    top: 0.3vh;
+    right: 0.4em;
+}
+
+.dispute-players-list {
+    display: grid;
+    grid-template-rows: 1;
+    gap: 0.5em;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    max-height: 88.0%;
+}
+
+.dispute-players-list::-webkit-scrollbar {
+    display: none;
+}
+
+.dispute-message-warning {
+    text-align: center;
+    opacity: 50%;
+    max-width: 15.75em;
+    margin-top: 680px;
+    margin-left: 35px;
+    position: absolute;
+}
+
+.dispute-button-selected {
+    cursor: pointer;
+    border-style: solid;
+    border-width: 0.1em;
+    border-color: #01b4ef;
+    transition: all 0.2s ease-in-out;
+}
+
+.dispute-button {
+    transition: all 0.2s ease-in-out;
+}
+
+.dispute-button:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+.dispute-players-item {
+    height: 2em;
+    background-color: rgba(135, 135, 135, 0.15);
+    border-radius: 0.8em;
+    margin: 0 0.5em 0 0.5em;
+    display: flex;
+    align-items: center;
+    width: 100% - cal(1em);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.dispute-players-item:hover {
+    background-color: rgba(135, 135, 135, 0.3);
+}
+
+.dispute-player-info {
+    margin-left: 1em;
+}
+
+.dispute-inbox {
+    background-color: rgba(14, 20, 23, 0.41);
+    border-radius: 0.8em;
+    overflow: hidden;
+    max-height: 100%;
+}
+
+.dispute-inbox-list {
+    display: grid;
+    grid-template-rows: 1;
+    gap: 0.5em;
+    max-height: 94.5%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.dispute-inbox-list::-webkit-scrollbar {
+    display: none;
+}
+
+.dispute-inbox-item {
+    height: 4em;
+    background-color: rgba(135, 135, 135, 0.15);
+    border-radius: 0.8em;
+    width: 351px;
+    margin: 0 0.5em 0 0.5em;
+    padding: 0.5em 1em 0.5em 1em;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.dispute-inbox-content {
+    display: grid;
+    grid-template-columns: 3fr 5fr 2.5fr 2.5fr 2.5fr;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.dispute-inbox-title {
+    color: #01b4ef;
+}
+
+.dispute-inbox-desc {
+    overflow: hidden;
+}
+
+.dispute-inbox-icon {
+    max-width: 1em;
+    margin: auto;
+}
+
+.dispute-messages {
+    position: relative;
+    background-color: rgba(14, 20, 23, 0.41);
+    border-radius: 0.8em;
+}
+
+.dispute-messages-list {
+    position: absolute;
+    width: 100%;
+    display: grid;
+    flex-direction: column;
+    gap: 0.5em;
+    bottom: 3em;
+    max-height: 88%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.dispute-messages-list::-webkit-scrollbar {
+    display: none;
+}
+
+.dispute-message-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width: 90%;
+    padding: 0.25em 0 0.25em 0;
+    background-color: rgba(135, 135, 135, 0.15);
+    border-radius: 0.8em;
+    margin: 0 0.5em 0 0.5em;
+    flex-grow: 0;
+    align-items: center;
+    overflow: hidden;
+}
+
+.dispute-message-right {
+    justify-self: right;
+    background-color: rgba(1, 180, 239, 0.15);
+}
+
+.dispute-message-left {
+    justify-self: left;
+}
+
+.dispute-message-input-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 1.5em;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5em;
+}
+
+.dispute-message-input-wrapper {
+    position: relative;
+    width: 95%;
+}
+
+.dispute-message-input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(135, 135, 135, 0.15);
+    border-radius: 0.8em;
+    color: white;
+    font-family: "Akrobat-Bold";
+    padding: 0 2.5em 0 1em;
+    box-sizing: border-box;
+}
+
+.dispute-message-icon {
+    position: absolute;
+    max-width: 1em;
+    top: 15%;
+    right: 0.5em;
+}
+
+.dispute-message-text {
+    padding: 0 0.5em 0 0.5em;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.dispute-message-date {
+    display: block;
+    font-size: 0.75em;
+    opacity: 50%;
+    padding: 0 0.8em 0 0.7em;
+    text-align: right;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.dispute-search-disclaimer {
+    position: absolute;
+    bottom: 1%;
+    width: 80%;
+    text-align: center;
+    margin: 0 10% 0 10%;
+    box-sizing: border-box;
+    opacity: 50%;
+    font-size: 1.1em;
+}
+
+.dispute-notif-container {
+    position: absolute;
+    top: 15vh;
+    right: 0.25em;
+    width: 15vw;
+    height: 100vh;
+    color: white;
+    font-family: "Akrobat-Bold";
+    font-size: min(0.83vw, 1.5vh);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.dispute-notif-container * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.dispute-notif-header {
+    background-color: rgba(1, 180, 237, 0.75);
+    border-radius: 0.5em;
+    padding: 0 0.5em 0 0.5em;
+    box-sizing: border-box;
+    font-size: 0.75em;
+}
+
+.dispute-notif-body {
+    padding-top: 0.2em;
+    display: flex;
+    gap: 0.2em;
+}
+
+.dispute-notif-tile {
+    background-color: rgba(14, 20, 23, 0.75);
+    border-radius: 0.5em;
+    padding: 0.5em;
+    box-sizing: border-box;
+    flex-grow: 1;
+}
+
+.dispute-notif-img-tile {
+    flex-grow: 0;
+    display: flex;
+}
+
+.dispute-notif-img {
+    width: 2em;
+    align-self: center;
+}
+
+.dispute-notif-text-tile {
+    overflow: hidden;
+    word-wrap: break-word;
+}

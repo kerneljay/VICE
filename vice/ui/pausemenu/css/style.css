@@ -1,0 +1,1109 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+@font-face {
+  font-family: "Akrobat-Black";
+  src: url("Akrobat-Black.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Akrobat-ExtraBold";
+  src: url("Akrobat-ExtraBold.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Akrobat-Bold";
+  src: url("Akrobat-Bold.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Akrobat-Regular";
+  src: url("Akrobat-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Akrobat-SemiBold";
+  src: url("Akrobat-SemiBold.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+:root {
+  --viceHover: rgba(33, 255, 225, 0.6);
+  --viceSecondGr: rgba(33, 255, 225, 0.3);
+  --viceMainGr: rgba(33, 255, 225, 1);
+  --viceHoverGr: rgba(0, 160, 152, 0.315);
+}
+#viceRoot {
+  width: 100vw;
+  height: 100vh;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: none;
+}
+#viceOverlay {
+  width: 100%;
+  height: 100%;
+  margin-top: -1%;
+  background-image: url("../assets/viceBackground.png");
+}
+#viceLogo {
+  position: fixed;
+  width: 8.542vw;
+  height: 8.708vw;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0vw;
+  background-image: url("../assets/viceLogo.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#vicePauseM {
+  width: 74.479vw;
+  height: 41.146vw;
+  position: fixed;
+  left: 50%;
+  top: 57%;
+  transform: translate(-50%, -50%);
+}
+#vicePmAbout {
+  position: absolute;
+  width: 18.229vw;
+  height: 14.583vw;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 0.521vw;
+  overflow: auto;
+}
+#vicePmAbLine {
+  position: absolute;
+  width: 0.313vw;
+  height: 2.083vw;
+  background-color: var(--viceMainGr);
+  top: 1.302vw;
+  border-radius: 0vw 0.521vw 0.521vw 0vw;
+}
+#vicePmAbTitle {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  top: 1.302vw;
+  left: 1.302vw;
+  color: white;
+  font-weight: 600;
+  font-size: 1.146vw;
+  font-family: Akrobat-ExtraBold;
+}
+#vicePmAbDesc {
+  position: absolute;
+  font-size: 0.729vw;
+  font-family: Akrobat-Bold;
+  color: white;
+  width: 15.625vw;
+  height: fit-content;
+  top: 3.906vw;
+  left: 1.302vw;
+  overflow: auto;
+}
+#vicePmPlayers {
+  position: absolute;
+  width: 53.646vw;
+  height: 4.167vw;
+  background-color: rgba(4, 12, 23, 0.45);
+  left: 20.833vw;
+}
+#vicePmNav {
+  position: absolute;
+  width: 20.229vw;
+  height: fit-content;
+  top: -1.6vw;
+  display: flex;
+  margin-left: 55.502vw;
+  flex-direction: column;
+  gap: 1.199vw;
+}
+#vicePmRow {
+  position: absolute;
+  width: 82.95vw;
+  height: fit-content;
+  top: 32.5vw;
+  display: flex;
+  margin-left: -3.95vw;
+  flex-direction: row;
+  gap: 0.999vw;
+}
+.vicePmNavCont {
+  position: relative;
+  width: 115%;
+  height: 4.2vw;
+  background-color: rgba(4, 12, 23, 0.45);
+  opacity: 0.9;
+}
+.viceNavRow {
+  position: relative;
+  width: 100%;
+  height: 5.208vw;
+  background-color: rgba(4, 12, 23, 0.45);
+  opacity: 0.9;
+}
+.viceDiscord {
+  position: relative;
+  width: 34%;
+  height: 2.808vw;
+  border-radius: 0.5vw;
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0.9;
+  margin-top: 4.5vw;
+  margin-left: 1.2vw;
+}
+.vicePCount {
+  position: relative;
+  width: 34%;
+  height: 2.808vw;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0.5vw;
+  opacity: 0.9;
+  margin-top: 1.1vw;
+  margin-left: 1.2vw;
+}
+.viceconnect {
+  position: relative;
+  width: 34%;
+  height: 2.808vw;
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0.9;
+  border-radius: 0.5vw;
+  margin-top: 1.1vw;
+  margin-left: 1.2vw;
+}
+.viceDiscord,
+#viceCuBbox,
+.vicePmBox2,
+.vicePmBox3,
+.viceconnect,
+.viceNavRow,
+.vicePmNavCont {
+  transition: all 0.2s ease-in-out;
+}
+#viceCsettings,
+#Store,
+#viceCuBbox,
+#twitter,
+#dispute,
+#website,
+.vicePmBox3,
+.vicePmBox2,
+#viceCmap,
+#viceCdisconnect {
+  cursor: pointer;
+}
+.viceDiscord:hover,
+.vicePmBox3:hover,
+.vicePmBox2:hover,
+#viceCuBbox:hover,
+.viceconnect:hover,
+.viceNavRow:hover,
+.vicePmNavCont:hover {
+  opacity: 1;
+  transform: scale(1.02);
+}
+.vicePmNavLine {
+  position: absolute;
+  width: 0.313vw;
+  height: 2.604vw;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.vicePmNavIcon {
+  position: absolute;
+  width: 2.083vw;
+  height: 2.083vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-left: 1.302vw;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.vicePmPlayerIcon {
+  position: absolute;
+  width: 2.083vw;
+  height: 2.083vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-left: 1.302vw;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.vicePmAssetIcon {
+  position: absolute;
+  width: 2.083vw;
+  height: 2.083vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-left: 1.302vw;
+  top: 47%;
+  transform: translateY(-50%);
+}
+.vicePmNavTxt {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  font-family: Akrobat-ExtraBold;
+  margin-left: 4.167vw;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.vicePmRowTxt {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  font-family: Akrobat-ExtraBold;
+  margin-left: 4.167vw;
+  top: 56%;
+  transform: translateY(-50%);
+}
+.viceCsButtons {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  margin-left: 4.167vw;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.vicePmNavTxt h1 {
+  font-size: 1.25vw;
+  font-family: Akrobat-ExtraBold;
+  color: white;
+}
+.vicePmRowTxt h1 {
+  font-size: 1.25vw;
+  font-family: Akrobat-ExtraBold;
+  color: white;
+}
+.vicePmNavTxt h2 {
+  font-size: 0.729vw;
+  font-weight: normal;
+  font-family: Akrobat-ExtraBold;
+  margin-top: -0.26vw;
+}
+.vicePmRowTxt h2 {
+  font-size: 0.729vw;
+  font-family: Akrobat-ExtraBold;
+  font-weight: normal;
+  margin-top: -0.26vw;
+}
+#vicePmPlLine {
+  position: absolute;
+  width: 0.313vw;
+  height: 2.083vw;
+  background-color: var(--viceMainGr);
+  border-radius: 0vw 0.521vw 0.521vw 0vw;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#vicePmPlTxt {
+  position: absolute;
+  width: fit-content;
+  font-family: Akrobat-ExtraBold;
+  height: fit-content;
+  font-size: 1.042vw;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 1.563vw;
+  font-weight: 400;
+  color: white;
+}
+.vicePmBlock {
+  position: absolute;
+  width: 37.6vw;
+  height: 14.975vw;
+  background-color: rgba(4, 12, 23, 0.45);
+  left: 16.61vw;
+}
+.vicePmBlock2 {
+  position: absolute;
+  width: 37.6vw;
+  height: 16.575vw;
+  background-color: rgba(4, 12, 23, 0.45);
+  left: 16.61vw;
+  margin-top: -1vw;
+}
+.vicePmTitle {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  color: #000000;
+  font-family: "Akrobat-Black";
+  font-size: 2.2em;
+  left: 1.502vw;
+  top: 0.601vw;
+}
+.vicePmDate {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  color: white;
+  font-size: 0.755vw;
+  font-family: Akrobat-Regular;
+  font-weight: bold;
+  left: 28.902vw;
+  top: 1.981vw;
+}
+.todaysDate {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  color: white;
+  font-size: 1.255vw;
+  font-family: Akrobat-Bold;
+  font-weight: bold;
+  left: 27.502vw;
+  top: 0.881vw;
+}
+.todaysDateTitle {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  color: white;
+  font-size: 0.855vw;
+  font-family: Akrobat-Black;
+  font-weight: bold;
+  left: 31.902vw;
+  top: 0.581vw;
+}
+.glow-box {
+  width: 0.4vw;
+  height: 0.4vw;
+  background-color: #95df4d;
+  box-shadow: 0 0 0.2vw 0.1vw #95df4d;
+  margin-top: 33.1%;
+  margin-left: 86.1%;
+}
+.glow-box2 {
+  width: 0.4vw;
+  height: 0.4vw;
+  background-color: #95df4d;
+  box-shadow: 0 0 0.2vw 0.1vw #95df4d;
+  margin-top: -13%;
+  margin-left: 9.1%;
+}
+.totalPlayers {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  color: white;
+  font-size: 1.2em;
+  font-family: Akrobat-Black;
+  font-weight: bold;
+  left: 33.202vw;
+  top: 11.981vw;
+}
+.vicePmDisc {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  font-size: 0.677vw;
+  font-family: Akrobat-Bold;
+  left: 1.702vw;
+  top: 2.5vw;
+}
+.vicePmBox {
+  position: absolute;
+  width: 34.05vw;
+  height: 10.554vw;
+  background-color: rgba(14, 20, 23, 0.25);
+  border-radius: 0.3vw;
+  top: 3.208vw;
+  margin-left: -0.8vw;
+}
+.vicePmBox2 {
+  position: absolute;
+  width: 34.25vw;
+  height: 4.854vw;
+  background-color: rgba(14, 20, 23, 0.25);
+  border-radius: 0.3vw;
+  top: 4.008vw;
+  margin-left: -0.7vw;
+  opacity: 0.9;
+}
+.vicePmBox3 {
+  position: absolute;
+  width: 34.25vw;
+  height: 4.854vw;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0.3vw;
+  top: 10.008vw;
+  margin-left: -7.908vw;
+  opacity: 0.9;
+}
+.vicePmBox3:hover {
+  opacity: 1;
+}
+.vicePmBox2:hover {
+  opacity: 1;
+}
+.vicePmBoxTxt {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  top: 51%;
+  transform: translateY(-50%);
+  left: 0.781vw;
+  font-family: Akrobat-Black;
+  font-size: 1.554vw;
+}
+.vicePmBoxTxt h1 {
+  font-size: 1.425vw;
+  font-family: Akrobat-Black;
+  font-weight: normal;
+  color: white;
+  margin-top: -19%;
+}
+.vicePmBoxTxt h2 {
+  font-size: 1.929vw;
+  font-weight: normal;
+  color: white;
+  font-family: Akrobat-Black;
+  margin-bottom: 0.02vw;
+}
+.vicePmMiniBlock {
+  position: absolute;
+  width: 23.5vw;
+  height: 16.513vw;
+  background-color: rgba(4, 12, 23, 0.45);
+  left: 55.46vw;
+  top: 41.625vw;
+  margin-top: -2.85vw;
+}
+.vicePmMLine {
+  position: absolute;
+  width: 2.604vw;
+  height: 0.313vw;
+  border-radius: 0vw 0vw 0.521vw 0.521vw;
+  left: 1.042vw;
+  opacity: 0.5;
+}
+.vicePmMTxt {
+  position: absolute;
+  width: fit-content;
+  font-family: Akrobat-Bold;
+  height: fit-content;
+  top: 2.581vw;
+  left: 1.202vw;
+}
+.vicePmMTxt h1 {
+  color: white;
+  font-family: Akrobat-Bold;
+  font-size: 1.354vw;
+  font-weight: bold;
+}
+.PlayersName {
+  color: white;
+  font-size: 2.8em;
+  font-family: "Akrobat-Black";
+}
+.vicePmMTxt h2 {
+  font-size: 0.977vw;
+  font-weight: normal;
+  margin-top: -0.117vw;
+  margin-left: 0.2vw;
+}
+.vicePmMTxt2 {
+  position: absolute;
+  width: fit-content;
+  font-family: Akrobat-Bold;
+  height: fit-content;
+  top: 0.581vw;
+  font-family: Akrobat-Black;
+  font-size: 1.754vw;
+  left: 1.302vw;
+}
+.vicePmMTxt2 h1 {
+  color: white;
+  font-family: Akrobat-Black;
+  font-size: 1.554vw;
+  font-weight: bold;
+}
+.vicePmMTxt2 h2 {
+  font-size: 0.977vw;
+  font-weight: normal;
+  margin-top: -0.117vw;
+  margin-left: 0.2vw;
+}
+.viceCircleButton {
+  position: absolute;
+  width: 1.563vw;
+  height: 1.563vw;
+  border-radius: 100%;
+  opacity: 0.5;
+  left: 12.344vw;
+  top: 4.948vw;
+}
+.viceCircleButton:hover {
+  opacity: 1;
+}
+.viceCBarr {
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/viceArrows.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.viceLinkBox {
+  position: absolute;
+  width: 18.854vw;
+  height: 10.417vw;
+  top: 19.771vw;
+  left: -0.5vw;
+}
+.viceLBline1 {
+  position: absolute;
+  width: 0.313vw;
+  height: 6.25vw;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 0.521vw 0vw 0vw 0.521vw;
+  opacity: 0.5;
+}
+.viceLBcont {
+  position: absolute;
+  width: 18.229vw;
+  height: 100%;
+  background-color: rgba(4, 12, 23, 0.45);
+  left: 0.313vw;
+}
+.viceLBline2 {
+  position: absolute;
+  width: 0.313vw;
+  height: 6.25vw;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 0vw 0.521vw 0.521vw 0vw;
+  opacity: 0.5;
+  left: 18.542vw;
+}
+.viceLBicon {
+  position: absolute;
+  width: 2.083vw;
+  height: 2.083vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 2.083vw;
+}
+.viceLBtext {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  color: white;
+  font-size: 0.729vw;
+  font-family: Akrobat-ExtraBold;
+  font-weight: bold;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 4.427vw;
+}
+.viceLBbtn {
+  position: absolute;
+  width: 7.813vw;
+  height: 2.083vw;
+  border-radius: 0.313vw;
+  font-family: Akrobat-ExtraBold;
+  background-color: var(--viceSecondGr);
+  color: white;
+  outline: none;
+  border: none;
+  font-size: 0.625vw;
+  font-weight: bold;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 6.25vw;
+}
+.viceLBbtn:hover {
+  background-color: var(--viceHover);
+}
+#viceCustomBox {
+  position: absolute;
+  width: 18.129vw;
+  height: 11.042vw;
+  top: 0vw;
+  left: -3.9vw;
+}
+#viceCuBLine1 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 7.292vw;
+  height: 0.313vw;
+  background-color: #000000;
+  opacity: 0.5;
+  z-index: 9999;
+}
+#viceCuBbox {
+  position: absolute;
+  width: 107%;
+  height: 33vw;
+  background-color: rgba(4, 12, 23, 0.45);
+  top: -1.6vw;
+}
+#viceCuBtitle {
+  position: absolute;
+  width: 100%;
+  height: fit-content;
+  font-size: 2.75vw;
+  font-weight: bold;
+  font-family: Akrobat-ExtraBold;
+  color: white;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 2.523vw;
+  text-align: center;
+}
+#viceCuBdisc {
+  position: absolute;
+  width: 57%;
+  height: auto;
+  font-size: 0.85vw;
+  font-family: Akrobat-Regular;
+  font-weight: normal;
+  color: white;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(22, 22, 22, 0.4);
+  border-radius: 0.521vw;
+  top: 10.646vw;
+  text-align: center;
+  padding: 5px;
+}
+#viceCuBbtn {
+  position: absolute;
+  width: 5.875vw;
+  height: 1.583vw;
+  border-radius: 0.513vw;
+  background-color: #000000;
+  color: white;
+  outline: none;
+  border: none;
+  font-size: 0.805vw;
+  font-family: Akrobat-Bold;
+  font-weight: bold;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 6.25vw;
+}
+#viceCuBbtn:hover {
+  background-color: #000000;
+}
+.viceBoldClr {
+  font-weight: bold;
+  color: var(--viceMainGr);
+}
+.viceTop1 {
+  top: -1.6vw;
+}
+.viceTop2 {
+  top: 15.779vw;
+}
+.viceTop3 {
+  top: 17.642vw;
+}
+.viceTop4 {
+  top: 30.729vw;
+}
+.viceLeft1 {
+  left: 2.188vw;
+}
+.viceLeft2 {
+  left: 9.479vw;
+}
+.viceLeft3 {
+  left: 16.771vw;
+  width: 4.167vw;
+}
+.viceLeft4 {
+  left: 21.979vw;
+  width: 8.333vw;
+}
+.viceLeft5 {
+  left: 57.604vw;
+}
+.viceLeft6 {
+  left: 1.094vw;
+}
+.viceLeft7 {
+  left: 8.385vw;
+}
+.viceLeft8 {
+  left: 37.604vw;
+}
+@media (min-width: 3840px) and(min-height:1200px) {
+  #viceLogo {
+    width: 265px;
+    height: 84px;
+    top: 60px;
+  }
+  #vicePauseM {
+    width: 1430px;
+    height: 790px;
+  }
+  #vicePmAbout {
+    width: 350px;
+    height: 280px;
+  }
+  #vicePmAbLine {
+    width: 6px;
+    height: 40px;
+    top: 25px;
+    border-radius: 0 10px 10px 0;
+    overflow: auto;
+  }
+  #vicePmAbTitle {
+    top: 25px;
+    left: 25px;
+    font-size: 22px;
+    font-family: Akrobat-ExtraBold;
+  }
+  #vicePmAbDesc {
+    font-size: 14px;
+    font-family: Akrobat-Bold;
+    width: 300px;
+    top: 75px;
+    left: 25px;
+  }
+  #vicePmPlayers {
+    width: 1030px;
+    height: 80px;
+    border-radius: 10px;
+    left: 400px;
+  }
+  #vicePmNav {
+    width: 350px;
+    top: 330px;
+    gap: 20px;
+  }
+  .vicePmNavCont {
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: Akrobat-ExtraBold;
+    margin-left: 30px;
+  }
+  .viceNavRow {
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: Akrobat-ExtraBold;
+    margin-left: 30px;
+  }
+  .discordBtn {
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: Akrobat-Bold;
+    margin-left: 30px;
+  }
+  .vicePmBlock {
+    width: 624px;
+    height: 150px;
+    left: 400px;
+    top: 100px;
+    background-color: rgba(14, 20, 23, 0.25);
+  }
+  .vicePmLine {
+    width: 6px;
+    height: 40px;
+    border-radius: 0 10px 10px 0;
+    top: 20px;
+  }
+  .vicePmTitle {
+    font-size: 29px;
+    font-family: Akrobat-Black;
+    left: 25px;
+    top: 15px;
+  }
+  .vicePmDate {
+    font-size: 10px;
+    font-family: Akrobat-Black;
+    left: 25px;
+    top: 15px;
+  }
+  .todaysDate {
+    font-size: 10px;
+    font-family: Akrobat-Black;
+    left: 25px;
+    top: 15px;
+  }
+  .todaysDateTitle {
+    font-size: 10px;
+    font-family: Akrobat-Black;
+    left: 25px;
+    top: 15px;
+  }
+  .totalPlayers {
+    font-size: 10px;
+    font-family: Akrobat-Black;
+    left: 25px;
+    top: 15px;
+  }
+  .vicePmDisc {
+    font-size: 13px;
+    font-family: Akrobat-Bold;
+    left: 25px;
+    top: 48px;
+  }
+  .vicePmBox {
+    width: 120px;
+    height: 50px;
+    top: 100px;
+    border-radius: 10px 10px 0 0;
+  }
+  .vicePmBoxTxt {
+    top: 50%;
+    transform: translateY(-50%);
+    left: 15px;
+  }
+  .vicePmBoxTxt h1 {
+    font-size: 12px;
+    font-family: Akrobat-ExtraBold;
+  }
+  .vicePmBoxTxt h2 {
+    font-size: 14px;
+    font-family: Akrobat-ExtraBold;
+    margin-top: -5px;
+  }
+}
+.vicePmNavLine {
+  width: 6px;
+  height: 60px;
+  border-radius: 10px 10px 10px 10px;
+}
+.vicePmNavIcon {
+  width: 41px;
+  height: 46px;
+  margin-left: 25px;
+}
+.vicePmAssetIcon {
+  width: 35px;
+  height: 34px;
+  margin-left: 10px;
+}
+.vicePmPlayerIcon {
+  width: 35px;
+  height: 27px;
+  margin-left: 10px;
+}
+.vicePmNavTxt {
+  font-family: Akrobat-ExtraBold;
+  margin-left: 80px;
+}
+.vicePmRowTxt {
+  margin-left: 100px;
+}
+.viceCsButtons {
+  font-size: 8px;
+  margin-left: 55px;
+  height: 38px;
+}
+.vicePmNavTxt h1 {
+  font-size: 28px;
+  font-family: Akrobat-Black;
+}
+.vicePmRowTxt h1 {
+  font-size: 35px;
+  font-family: Akrobat-ExtraBold;
+}
+.viceCsButtons h1 {
+  font-size: 18px;
+  font-family: Akrobat-Black;
+  margin-bottom: -5px;
+}
+.vicePmNavTxt h2 {
+  font-size: 14px;
+  font-family: Akrobat-Regular;
+  margin-top: -5px;
+}
+.vicePmRowTxt h2 {
+  font-size: 23px;
+  font-family: Akrobat-Bold;
+  margin-top: -8px;
+  margin-left: 1px;
+}
+#vicePmPlLine {
+  position: absolute;
+  width: 6px;
+  height: 40px;
+  border-radius: 0 10px 10px 0;
+}
+#vicePmPlTxt {
+  .vicePmMiniBlock {
+    width: 302px;
+    height: 150px;
+    border-radius: 10px;
+    left: 400px;
+    top: 300px;
+  }
+  .vicePmMLine {
+    width: 50px;
+    height: 6px;
+    border-radius: 0 0 10px 10px;
+    left: 20px;
+    opacity: 0.5;
+  }
+  .vicePmMTxt {
+    top: 15px;
+    left: 25px;
+  }
+  .vicePmMTxt h1 {
+    font-size: 26px;
+    font-family: Akrobat-Bold;
+  }
+  .vicePmMTxt h2 {
+    font-size: 13px;
+    font-family: Akrobat-Bold;
+    margin-top: -8px;
+  }
+  .vicePmMTxt2 {
+    top: 15px;
+    left: 25px;
+  }
+  .vicePmMTxt2 h1 {
+    font-size: 36px;
+    font-family: Akrobat-Black;
+  }
+  .vicePmMTxt2 h2 {
+    font-size: 25px;
+    font-family: Akrobat-Black;
+    margin-top: -8px;
+  }
+  .viceCircleButton {
+    width: 30px;
+    height: 30px;
+    left: 237px;
+    top: 95px;
+  }
+  .viceLinkBox {
+    width: 362px;
+    height: 200px;
+    top: 130px;
+    left: 1075px;
+  }
+  .viceLBline1 {
+    width: 6px;
+    height: 120px;
+    border-radius: 10px 0 0 10px;
+  }
+  .viceLBcont {
+    width: 350px;
+    border-radius: 10px;
+    left: 6px;
+  }
+  .viceLBline2 {
+    width: 6px;
+    height: 120px;
+    transform: translateY(-50%);
+    border-radius: 0 10px 10px 0;
+    left: 356px;
+  }
+  .viceLBicon {
+    width: 40px;
+    height: 40px;
+    top: 40px;
+  }
+  .viceLBtext {
+    font-size: 14px;
+    top: 85px;
+    font-family: Akrobat-ExtraBold;
+  }
+  .viceLBbtn {
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-family: Akrobat-ExtraBold;
+    top: 120px;
+  }
+  #viceCustomBox {
+    width: 350px;
+    height: 212px;
+    top: 354px;
+    left: 1081px;
+  }
+  #viceCuBLine1 {
+    width: 140px;
+    height: 6px;
+    border-radius: 10px 10px 0 0;
+  }
+  #viceCuBbox {
+    height: 200px;
+    border-radius: 10px;
+    top: 6px;
+  }
+  #viceCuBLine2 {
+    width: 140px;
+    height: 6px;
+    border-radius: 0 0 10px 10px;
+    top: 206px;
+  }
+  #viceCuBtitle {
+    font-size: 55px;
+    font-family: Akrobat-Black;
+    top: 35px;
+  }
+  #viceCuBdisc {
+    font-size: 12px;
+    font-family: Akrobat-Regular;
+    top: 70px;
+  }
+  #viceCuBbtn {
+    width: 180px;
+    height: 40px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-family: Akrobat-Bold;
+    top: 120px;
+  }
+  .viceTop1 {
+    top: 130px;
+  }
+  .viceTop2 {
+    top: 470px;
+  }
+  .viceTop3 {
+    top: 640px;
+  }
+  .viceTop4 {
+    top: 590px;
+  }
+  .viceLeft1 {
+    left: 42px;
+  }
+  .viceLeft2 {
+    left: 182px;
+  }
+  .viceLeft3 {
+    left: 322px;
+    width: 80px;
+  }
+  .viceLeft4 {
+    left: 422px;
+    width: 160px;
+  }
+  .viceLeft5 {
+    left: 722px;
+  }
+  .viceLeft6 {
+    left: 21px;
+  }
+  .viceLeft7 {
+    left: 161px;
+  }
+  .viceLeft8 {
+    left: 722px;
+  }
+}

@@ -1,0 +1,44 @@
+-- local tutorialStartTimes = {}
+
+
+-- RegisterNetEvent('VICE:checkTutorial')
+-- AddEventHandler('VICE:checkTutorial', function()
+--     local source = source
+--     local user_id = VICE.getUserId(source)
+--     local discord  = "N/A"
+--     for k,v in pairs(GetPlayerIdentifiers(source))do
+--         if string.sub(v, 1, string.len("discord:")) == "discord:" then
+--             discord = v
+--         end 
+--     end
+--     if not VICE.hasGroup(user_id, 'TutorialDone') then
+--         TriggerClientEvent('VICE:playTutorial', source)
+--         VICE.addUserGroup(user_id, 'NewPlayer')
+--         VICE.setBucket(source, 50)
+--         TriggerClientEvent('VICE:setBucket', source, 50)
+--         VICE.sendDCLog('tutorial', 'VICE Tutorial Logs', "> Player Name: **"..VICE.getPlayerName(user_id).."**\n> Player Discord: **"..discord.."**\n> Player PermID: **"..user_id.."**\n> Info: **Started the Tutorial**")
+--         TriggerClientEvent('VICE:setIsNewPlayer', source)
+--         tutorialStartTimes[user_id] = os.time()
+--     end
+-- end)
+
+-- RegisterNetEvent('VICE:setCompletedTutorial')
+-- AddEventHandler('VICE:setCompletedTutorial', function()
+--     local source = source
+--     local user_id = VICE.getUserId(source)
+--     local discord  = "N/A"
+--     for k,v in pairs(GetPlayerIdentifiers(source))do
+--         if string.sub(v, 1, string.len("discord:")) == "discord:" then
+--             discord = v
+--         end 
+--     end
+--     if not VICE.hasGroup(user_id, 'TutorialDone') then
+--         VICE.addUserGroup(user_id, 'TutorialDone')
+--         VICE.addUserGroup(user_id, 'NewPlayer')
+--         VICE.setBucket(source, 0)
+--         TriggerClientEvent('VICE:setBucket', source, 0)
+--         local duration = os.time() - tutorialStartTimes[user_id]
+--         tutorialStartTimes[user_id] = nil 
+--         VICE.sendDCLog('tutorial', 'VICE Tutorial Logs', "> Player Name: **"..VICE.getPlayerName(user_id).."**\n> Player Discord: **"..discord.."**\n> Player PermID: **"..user_id.."**\n> Info: **Finished the Tutorial**\n> Tutorial Duration: **"..duration.." seconds**")
+--     end
+-- end)
